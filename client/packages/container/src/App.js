@@ -1,7 +1,11 @@
 import React from 'react';
+import AuthApp from './components/AuthApp';
 
-const App = () => {
-  return <h1>App</h1>
+export default () => {
+  return (
+    <div>
+      <h1>Container</h1>
+      <AuthApp />
+    </div>
+  )
 }
-
-export default App;
