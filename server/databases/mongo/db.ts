@@ -1,4 +1,4 @@
-import { MongoClient } from "https://deno.land/x/mongo/mod.ts";
+import { MongoClient } from "https://deno.land/x/mongo@v0.30.0/mod.ts";
 
 const URI = "mongodb://127.0.0.1:27017";
 
