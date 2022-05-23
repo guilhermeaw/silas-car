@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import { mount } from 'auth/AuthApp';
 
-export default () => {
+const MountComponent = ({ mount }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -10,3 +9,5 @@ export default () => {
 
   return <div ref={ref}></div>
 }
+
+export default MountComponent;

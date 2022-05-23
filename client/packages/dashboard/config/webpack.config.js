@@ -6,7 +6,7 @@ const packageJson = require('../package.json');
 module.exports = {
   mode: 'development',
   devServer: {
-    port: 8080,
+    port: 8082,
     historyApiFallback: {
       index: 'index.html'
     }
@@ -27,16 +27,16 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    }),
     new ModuleFederationPlugin({
-      name: 'container',
-      remotes: {
-        auth: 'auth@http://localhost:8081/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:8082/remoteEntry.js'
+      name: 'dashboard',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './DashboardApp': './src/bootstrap'
       },
       shared: packageJson.dependencies
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
     })
   ]
 };
