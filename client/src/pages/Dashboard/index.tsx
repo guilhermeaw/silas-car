@@ -1,4 +1,5 @@
 import { Button, Card, Stack, Typography, Grid } from '@mui/material';
+import Banner from '../../components/Banner';
 
 import { MainContainer } from '../../components/MainContainer';
 
@@ -17,37 +18,11 @@ const DashboardPage = () => {
 
   return (
     <MainContainer>
-      <Card
-        sx={{
-          background:
-            'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url( "src/assets/images/banner.jpg");',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          position: 'relative',
-          height: '35rem',
-        }}
-      >
-        <Stack sx={{ position: 'absolute', top: '6rem', left: '4rem' }}>
-          <Typography color="#fff" variant="h1">
-            Silas Car carros customizados
-          </Typography>
-
-          <Typography color="#fff" variant="subtitle1">
-            Confira abaixo todos os nossos modelos customizados e escolhe o que
-            mais combinar com você
-          </Typography>
-
-          <Button
-            sx={{ marginTop: '1rem', color: '#fff' }}
-            color="inherit"
-            size="large"
-            variant="outlined"
-          >
-            Conferir os modelos
-          </Button>
-        </Stack>
-      </Card>
+      <Banner
+        title="Silas Car carros customizados"
+        subtitle="Confira abaixo todos os nossos serviços de customização"
+        actionLabel="Conferir os serviços"
+      />
 
       <Grid sx={{ margin: '1rem 0' }} container>
         {cars.map(car => (
