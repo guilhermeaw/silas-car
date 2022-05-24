@@ -6,7 +6,7 @@ type BannerProps = {
   actionLabel: string;
 };
 
-const Banner = ({ actionLabel, subtitle, title }: BannerProps) => {
+export const Banner = ({ actionLabel, subtitle, title }: BannerProps) => {
   return (
     <Card
       sx={{
@@ -40,5 +40,3 @@ const Banner = ({ actionLabel, subtitle, title }: BannerProps) => {
     </Card>
   );
 };
-
-export default Banner;
