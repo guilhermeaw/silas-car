@@ -25,7 +25,11 @@ export const JobPostsList = ({ items }: JobPostsListProps) => {
               style={{ borderRadius: 4 }}
             />
 
-            <Stack margin="0 1rem" width="100%" justifyContent="space-between">
+            <Stack
+              marginLeft="1rem"
+              width="100%"
+              justifyContent="space-between"
+            >
               <div>
                 <Typography variant="h3">{item.title}</Typography>
                 <Typography variant="subtitle1">{item.date}</Typography>
