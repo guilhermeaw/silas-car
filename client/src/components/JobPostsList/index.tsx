@@ -1,4 +1,16 @@
-import { Button, Card, Grid, Stack, Typography } from '@mui/material';
+import {
+  DeleteOutline as DeleteOutlineIcon,
+  Edit as EditIcon,
+} from '@mui/icons-material';
+
+import {
+  Button,
+  Card,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 type JobPost = {
   id: number;
@@ -9,14 +21,18 @@ type JobPost = {
 
 type JobPostsListProps = {
   items: JobPost[];
+  adminMode?: boolean;
 };
 
-export const JobPostsList = ({ items }: JobPostsListProps) => {
+export const JobPostsList = ({
+  items,
+  adminMode = false,
+}: JobPostsListProps) => {
   return (
     <Grid marginTop="0.5rem" spacing={2} container>
       {items.map(item => (
         <Grid key={item.id} xs={6} item>
-          <Card sx={{ padding: '1rem', display: 'flex' }}>
+          <Card sx={{ padding: '1rem', display: 'flex', position: 'relative' }}>
             <img
               src={item.img}
               alt="car"
@@ -37,6 +53,21 @@ export const JobPostsList = ({ items }: JobPostsListProps) => {
 
               <Button variant="contained">Mais informações</Button>
             </Stack>
+
+            {adminMode && (
+              <Stack
+                direction="row"
+                sx={{ position: 'absolute', top: 8, right: 8 }}
+              >
+                <IconButton aria-label="Editar serviço" onClick={() => {}}>
+                  <EditIcon />
+                </IconButton>
+
+                <IconButton aria-label="Deletar serviço" onClick={() => {}}>
+                  <DeleteOutlineIcon />
+                </IconButton>
+              </Stack>
+            )}
           </Card>
         </Grid>
       ))}

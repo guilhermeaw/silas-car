@@ -1,6 +1,8 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+import { RouterLink } from '../RouterLink';
+
 import * as S from './styles';
 
 export const Header = () => {
@@ -20,9 +22,11 @@ export const Header = () => {
         }}
       >
         <Stack direction="row" alignItems="center" spacing={2}>
-          <Typography variant="h1" fontSize="1.5rem">
-            Silas Car
-          </Typography>
+          <RouterLink to="/">
+            <Typography variant="h1" fontSize="1.5rem">
+              Silas Car
+            </Typography>
+          </RouterLink>
         </Stack>
 
         <Stack direction="row" spacing={2}>
