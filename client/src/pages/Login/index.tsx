@@ -7,7 +7,6 @@ import { InputPassword } from '../../components/InputPassword';
 import { InputEmail } from '../../components/InputEmail';
 
 import * as S from './styles';
-import { RouterLink } from '../../components/RouterLink';
 
 const LoginPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -49,10 +48,6 @@ const LoginPage = () => {
           sx={{ marginTop: '1rem' }}
         >
           Entrar
-        </Button>
-
-        <Button sx={{ marginTop: '1rem' }}>
-          <RouterLink to="/signup">Registrar-se</RouterLink>
         </Button>
       </S.Form>
     </AuthContainer>
