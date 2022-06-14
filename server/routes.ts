@@ -12,7 +12,7 @@ const router = new Router();
 
 router
   .post("/session", auth)
-  .get("/cars", authorized, getCars)
+  .get("/cars", getCars)
   .post("/cars", authorized, insertCar);
 
 export default router;
