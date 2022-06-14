@@ -5,11 +5,14 @@ import {
   insertCar
 } from "./controllers/cars-controller.ts";
 
+import { auth } from "./controllers/auth-controller.ts";
+import { authorized } from "./middlewares/authorized.ts";
 
 const router = new Router(); 
 
 router
-  .get("/cars", getCars)
-  .post("/cars", insertCar);
+  .post("/session", auth)
+  .get("/cars", authorized, getCars)
+  .post("/cars", authorized, insertCar);
 
 export default router;
