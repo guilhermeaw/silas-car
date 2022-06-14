@@ -1,9 +1,12 @@
 import { Button, Card, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { JobPostsList } from '../../components/JobPostsList';
 import { MainContainer } from '../../components/MainContainer';
 
 const DashboardPage = () => {
+  const navigate = useNavigate();
+
   const jobPosts = [
     {
       id: 1,
@@ -36,7 +39,11 @@ const DashboardPage = () => {
               da Silas Car
             </Typography>
 
-            <Button sx={{ marginTop: '0.5rem' }} variant="contained">
+            <Button
+              sx={{ marginTop: '0.5rem' }}
+              variant="contained"
+              onClick={() => navigate('/add-job')}
+            >
               Adicionar
             </Button>
           </Card>

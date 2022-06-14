@@ -3,7 +3,15 @@ import {
   Edit as EditIcon,
 } from '@mui/icons-material';
 
-import { Card, Grid, IconButton, Stack, Typography } from '@mui/material';
+import {
+  Card,
+  Grid,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 type JobPost = {
   id: number;
@@ -22,6 +30,8 @@ export const JobPostsList = ({
   items,
   adminMode = false,
 }: JobPostsListProps) => {
+  const navigate = useNavigate();
+
   return (
     <Grid marginTop="0.5rem" spacing={2} container>
       {items.map(item => (
@@ -50,19 +60,21 @@ export const JobPostsList = ({
                 <Typography variant="h3">{item.title}</Typography>
                 <Typography variant="subtitle1">{item.date}</Typography>
 
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    marginTop: '0.8rem',
-                    display: '-webkit-box',
-                    overflow: 'hidden',
-                    WebkitBoxOrient: 'vertical',
-                    WebkitLineClamp: 2,
-                    minHeight: '44px',
-                  }}
-                >
-                  {item.description}
-                </Typography>
+                <Tooltip title={item.description}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      marginTop: '0.8rem',
+                      display: '-webkit-box',
+                      overflow: 'hidden',
+                      WebkitBoxOrient: 'vertical',
+                      WebkitLineClamp: 2,
+                      minHeight: '44px',
+                    }}
+                  >
+                    {item.description}
+                  </Typography>
+                </Tooltip>
               </div>
             </Stack>
 
@@ -71,7 +83,12 @@ export const JobPostsList = ({
                 direction="row"
                 sx={{ position: 'absolute', top: 8, right: 8 }}
               >
-                <IconButton aria-label="Editar serviço" onClick={() => {}}>
+                <IconButton
+                  aria-label="Editar serviço"
+                  onClick={() => {
+                    navigate('/edit-job');
+                  }}
+                >
                   <EditIcon />
                 </IconButton>
 
