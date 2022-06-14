@@ -1,14 +1,18 @@
 import { CarsRepository } from "../repositories/cars-repository.ts";
 
 interface InsertCarUseCaseRequest {
-    brand: string;
-    model: string;
+    title: string;
+    description: string;
+    date: Date;
+    img_url: string;
 }
 
 interface CarResponse {
     id: string;
-    brand: string;
-    model: string;
+    title: string;
+    description: string;
+    date: Date;
+    img_url: string;
 }
 
 interface ErrorResponse {
@@ -24,26 +28,30 @@ export class InsertCarUseCase {
     constructor( private carsRepository: CarsRepository ) {}
 
     async execute(request: InsertCarUseCaseRequest): Promise<InsertCarUseCaseResponse> {
-        const { brand, model } = request;
+        const { title, description, date, img_url } = request;
 
-        if (!brand || !model) {
+        if (!title || !description || !date || !img_url) {
             return {
                 status: 400,
-                body: { message: "Brand and model are required." }
+                body: { message: "É necessário preencher todos os campos." }
             };
         }
 
         const id = await this.carsRepository.create({
-            brand,
-            model
+            title,
+            description,
+            date,
+            img_url
         });
 
         return {
             status: 201,
             body: {
                 id,
-                brand,
-                model
+                title,
+                description,
+                date,
+                img_url
             }
         }
     }

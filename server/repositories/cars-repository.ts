@@ -1,6 +1,8 @@
 export interface CarCreateData {
-    brand: string;
-    model: string;
+    title: string;
+    description: string;
+    date: Date;
+    img_url: string;
 }
 
 export interface CarsRepository {

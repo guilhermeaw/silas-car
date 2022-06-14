@@ -2,10 +2,16 @@ import { CarCreateData, CarsRepository } from "../cars-repository.ts";
 import { carsCollection } from "../../databases/mongo/collections/cars-collection.ts"
 
 export class MongoCarsRepository implements CarsRepository {
-    async create({ brand, model }: CarCreateData) {
+    async create({ title, description, date, img_url }: CarCreateData) {
         return await carsCollection.insertOne({
-            brand,
-            model
+            title,
+            description,
+            date,
+            img_url
         });
+    }
+
+    async listAll() {
+        return await carsCollection.find();
     }
 }
