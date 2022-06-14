@@ -3,18 +3,12 @@ import {
   Edit as EditIcon,
 } from '@mui/icons-material';
 
-import {
-  Button,
-  Card,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Card, Grid, IconButton, Stack, Typography } from '@mui/material';
 
 type JobPost = {
   id: number;
   title: string;
+  description: string;
   date: string;
   img: string;
 };
@@ -32,7 +26,13 @@ export const JobPostsList = ({
     <Grid marginTop="0.5rem" spacing={2} container>
       {items.map(item => (
         <Grid key={item.id} xs={6} item>
-          <Card sx={{ padding: '1rem', display: 'flex', position: 'relative' }}>
+          <Card
+            sx={{
+              padding: '1rem',
+              display: 'flex',
+              position: 'relative',
+            }}
+          >
             <img
               src={item.img}
               alt="car"
@@ -49,9 +49,21 @@ export const JobPostsList = ({
               <div>
                 <Typography variant="h3">{item.title}</Typography>
                 <Typography variant="subtitle1">{item.date}</Typography>
-              </div>
 
-              <Button variant="contained">Mais informações</Button>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    marginTop: '0.8rem',
+                    display: '-webkit-box',
+                    overflow: 'hidden',
+                    WebkitBoxOrient: 'vertical',
+                    WebkitLineClamp: 2,
+                    minHeight: '44px',
+                  }}
+                >
+                  {item.description}
+                </Typography>
+              </div>
             </Stack>
 
             {adminMode && (
