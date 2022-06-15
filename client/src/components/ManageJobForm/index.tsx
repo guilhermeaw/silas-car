@@ -1,50 +1,47 @@
-import { Button, TextField } from '@mui/material';
-import { RefObject, useRef } from 'react';
+import { Button } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-type ManageJobFormProps = {
-  action: 'Adicionar' | 'Editar';
+import { FormInput } from '../FormInput';
+
+export type JobFormData = {
+  jobTitle: string;
+  jobDescription: string;
+  jobImageUrl: string;
 };
 
-export const ManageJobForm = ({ action }: ManageJobFormProps) => {
-  const titleInput = useRef(null) as RefObject<HTMLInputElement>;
-  const descriptionInput = useRef(null) as RefObject<HTMLInputElement>;
-  const imageInput = useRef(null) as RefObject<HTMLInputElement>;
+type ManageJobFormProps = {
+  defaultValues?: JobFormData;
+  onSubmit: SubmitHandler<JobFormData>;
+};
+
+export const ManageJobForm = ({
+  defaultValues,
+  onSubmit,
+}: ManageJobFormProps) => {
+  const { handleSubmit, control } = useForm<JobFormData>({ defaultValues });
 
   return (
-    <form onSubmit={() => {}}>
-      <TextField
-        label="Título"
-        sx={{ background: '#fff' }}
-        size="small"
-        margin="dense"
-        inputRef={titleInput}
-        required
-        fullWidth
-      />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormInput control={control} label="Título" name="jobTitle" required />
 
-      <TextField
+      <FormInput
+        control={control}
         label="Descrição"
-        sx={{ background: '#fff' }}
-        size="small"
-        margin="dense"
-        inputRef={descriptionInput}
+        name="jobDescription"
         required
-        fullWidth
         multiline
+        minRows={2}
       />
 
-      <TextField
+      <FormInput
+        control={control}
         label="Imagem (URL)"
-        sx={{ background: '#fff' }}
-        size="small"
-        margin="dense"
-        inputRef={imageInput}
+        name="jobImageUrl"
         required
-        fullWidth
       />
 
       <Button sx={{ marginTop: '0.5rem' }} variant="contained" type="submit">
-        {action}
+        Confirmar
       </Button>
     </form>
   );

@@ -1,15 +1,20 @@
 import { Typography } from '@mui/material';
+import { SubmitHandler } from 'react-hook-form';
 
 import { MainContainer } from '../../components/MainContainer';
-import { ManageJobForm } from '../../components/ManageJobForm';
+import { JobFormData, ManageJobForm } from '../../components/ManageJobForm';
 
 const AddJobPage = () => {
+  const handleSubmit: SubmitHandler<JobFormData> = data => {
+    alert(JSON.stringify(data));
+  };
+
   return (
     <MainContainer>
       <Typography variant="h2">Adicionar serviço</Typography>
       <Typography variant="subtitle1">Adicione um serviço</Typography>
 
-      <ManageJobForm action="Adicionar" />
+      <ManageJobForm onSubmit={handleSubmit} />
     </MainContainer>
   );
 };
