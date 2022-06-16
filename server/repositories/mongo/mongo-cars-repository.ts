@@ -1,5 +1,6 @@
 import { CarCreateData, CarUpdateData, CarsRepository } from "../cars-repository.ts";
 import { carsCollection } from "../../databases/mongo/collections/cars-collection.ts"
+import { Bson } from "https://deno.land/x/mongo@v0.22.0/mod.ts";
 
 export class MongoCarsRepository implements CarsRepository {
     async create({ title, description, date, img_url }: CarCreateData) {
@@ -18,7 +19,7 @@ export class MongoCarsRepository implements CarsRepository {
         // console.log(value);
 
         return await carsCollection.updateOne(
-            {_id: {"oid":id}},
+            {_id: id},
             { 
                 $set: {
                     title,
@@ -30,7 +31,7 @@ export class MongoCarsRepository implements CarsRepository {
     }
 
     async listAll() {
-        return await carsCollection.find();
+        return await carsCollection.find().toArray();
     }
 
     async delete(id: string) {
