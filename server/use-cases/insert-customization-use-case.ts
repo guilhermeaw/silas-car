@@ -1,13 +1,13 @@
-import { CarsRepository } from "../repositories/cars-repository.ts";
+import { CustomizationsRepository } from "../repositories/customizations-repository.ts";
 
-interface InsertCarUseCaseRequest {
+interface InsertCustomizationUseCaseRequest {
     title: string;
     description: string;
     date: Date;
     img_url: string;
 }
 
-interface CarResponse {
+interface CustomizationResponse {
     id: string;
     title: string;
     description: string;
@@ -19,15 +19,15 @@ interface ErrorResponse {
     message: string;
 }
 
-interface InsertCarUseCaseResponse {
+interface InsertCustomizationUseCaseResponse {
     status: number;
-    body: CarResponse | ErrorResponse;
+    body: CustomizationResponse | ErrorResponse;
 }
 
-export class InsertCarUseCase {
-    constructor( private carsRepository: CarsRepository ) {}
+export class InsertCustomizationUseCase {
+    constructor( private CustomizationsRepository: CustomizationsRepository ) {}
 
-    async execute(request: InsertCarUseCaseRequest): Promise<InsertCarUseCaseResponse> {
+    async execute(request: InsertCustomizationUseCaseRequest): Promise<InsertCustomizationUseCaseResponse> {
         const { title, description, date, img_url } = request;
 
         if (!title || !description || !date || !img_url) {
@@ -37,7 +37,7 @@ export class InsertCarUseCase {
             };
         }
 
-        const id = await this.carsRepository.create({
+        const id = await this.CustomizationsRepository.create({
             title,
             description,
             date,

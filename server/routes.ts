@@ -1,11 +1,11 @@
 import { Router } from "https://deno.land/x/oak@v10.6.0/mod.ts";
 
 import {
-  getCars,
-  insertCar,
-  updateCar,
-  deleteCar
-} from "./controllers/cars-controller.ts";
+  listCustomizations,
+  insertCustomization,
+  updateCustomization,
+  deleteCustomization
+} from "./controllers/customizations-controller.ts";
 
 import { auth } from "./controllers/auth-controller.ts";
 import { authorized } from "./middlewares/authorized.ts";
@@ -14,9 +14,9 @@ const router = new Router();
 
 router
   .post("/session", auth)
-  .get("/customizations", getCars)
-  .post("/customizations", authorized, insertCar)
-  .put("/customizations/:id", authorized, updateCar)
-  .delete("/customizations/:id", authorized, deleteCar);
+  .get("/customizations", listCustomizations)
+  .post("/customizations", authorized, insertCustomization)
+  .put("/customizations/:id", authorized, updateCustomization)
+  .delete("/customizations/:id", authorized, deleteCustomization);
 
 export default router;
