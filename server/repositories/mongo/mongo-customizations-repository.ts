@@ -21,7 +21,7 @@ export class MongoCustomizationsRepository implements CustomizationsRepository {
     }
 
     async listAll() {
-        return await customizationsCollection.find({}).toArray();
+        return await customizationsCollection.find({}).sort({ date: -1 }).toArray();
     }
 
     async delete({ id }: CustomizationDeleteData) {
