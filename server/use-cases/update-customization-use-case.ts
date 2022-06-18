@@ -4,7 +4,6 @@ interface UpdateCustomizationUseCaseRequest {
     id: string;
     title: string;
     description: string;
-    date: Date;
     img_url: string;
 }
 
@@ -29,9 +28,9 @@ export class UpdateCustomizationUseCase {
     constructor( private CustomizationsRepository: CustomizationsRepository ) {}
 
     async execute(request: UpdateCustomizationUseCaseRequest): Promise<CustomizationUseCaseResponse> {
-        const { id, title, description, date, img_url } = request;
+        const { id, title, description, img_url } = request;
 
-        if (!title || !description || !date || !img_url) {
+        if (!title || !description || !img_url) {
             return {
                 status: 400,
                 body: { message: "É necessário preencher todos os campos." }
@@ -51,7 +50,7 @@ export class UpdateCustomizationUseCase {
             id,
             title,
             description,
-            date,
+            date: new Date(),
             img_url
         });
 

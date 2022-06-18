@@ -26,10 +26,10 @@ const insertCustomization = async ({ request, response }: { request: any; respon
 
 const updateCustomization = async ({ params, request, response }: { params: { id: string }; request: any; response: any; }) => {
   const body = await request.body();
-  const { title, description, date, img_url } = await body.value;
+  const { title, description, img_url } = await body.value;
   const id = params.id;
 
-  const updateCustomizationResponse = await updateCustomizationUseCase.execute({id, title, description, date, img_url});
+  const updateCustomizationResponse = await updateCustomizationUseCase.execute({id, title, description, img_url});
 
   response.status = updateCustomizationResponse.status;
   response.body = updateCustomizationResponse.body;
