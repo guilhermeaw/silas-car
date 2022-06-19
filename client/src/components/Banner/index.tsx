@@ -11,7 +11,7 @@ export const Banner = ({ actionLabel, subtitle, title }: BannerProps) => {
     <Card
       sx={{
         background:
-          'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("src/assets/images/banner.jpg");',
+          'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/images/banner.jpg");',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

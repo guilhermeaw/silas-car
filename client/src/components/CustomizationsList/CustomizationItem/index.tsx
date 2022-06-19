@@ -81,7 +81,7 @@ export const CustomizationItem = ({
             <IconButton
               aria-label="Editar serviço"
               onClick={() => {
-                navigate('/edit-job');
+                navigate(`/edit-job/${item._id}`);
               }}
             >
               <EditIcon />

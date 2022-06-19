@@ -10,7 +10,7 @@ export type CustomizationFormData = {
 };
 
 type ManageCustomizationFormProps = {
-  defaultValues?: CustomizationFormData;
+  defaultValues?: CustomizationFormData | undefined;
   onSubmit: SubmitHandler<CustomizationFormData>;
 };
 
@@ -18,6 +18,7 @@ export const ManageCustomizationForm = ({
   defaultValues,
   onSubmit,
 }: ManageCustomizationFormProps) => {
+  console.log({ defaultValues });
   const { handleSubmit, control } = useForm<CustomizationFormData>({
     defaultValues,
   });

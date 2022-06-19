@@ -1,23 +1,55 @@
+import { useMemo } from 'react';
 import { Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
+import { useQueryClient } from 'react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import { Customization } from '../../models/Customization';
 import { MainContainer } from '../../components/MainContainer';
+import { useEditCustomization } from '../../services/mutations';
 import {
   CustomizationFormData,
   ManageCustomizationForm,
 } from '../../components/ManageCustomizationForm';
 
 const EditCustomizationPage = () => {
-  const handleSubmit: SubmitHandler<CustomizationFormData> = data => {
-    alert(JSON.stringify(data));
-  };
+  const { mutateAsync: editCustomization } = useEditCustomization();
 
-  const jobToEdit = {
-    jobTitle: 'Customização de Civic SI',
-    jobDescription:
-      'Instalação de rodas esportivas aro 22, instalação de aerofólio de fibra de carbono, escapamento esportivo',
-    customizationImageUrl:
-      'https://i.pinimg.com/originals/a3/e2/19/a3e219ad261727b311b63969cc7a0e54.jpg',
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const customizations = queryClient.getQueryData(
+    'customizations',
+  ) as Customization[];
+
+  const customizationToEdit = customizations?.find(item => item._id === id);
+
+  const defaultValues = useMemo(() => {
+    return customizationToEdit
+      ? {
+          customizationTitle: customizationToEdit?.title,
+          customizationDescription: customizationToEdit?.description,
+          customizationImageUrl: customizationToEdit?.img_url,
+        }
+      : undefined;
+  }, [customizationToEdit]);
+
+  const handleSubmit: SubmitHandler<CustomizationFormData> = async data => {
+    const {
+      customizationDescription,
+      customizationImageUrl,
+      customizationTitle,
+    } = data;
+
+    await editCustomization({
+      _id: id!,
+      description: customizationDescription,
+      img_url: customizationImageUrl,
+      title: customizationTitle,
+    });
+
+    navigate('/dashboard');
   };
 
   return (
@@ -27,7 +59,7 @@ const EditCustomizationPage = () => {
 
       <ManageCustomizationForm
         onSubmit={handleSubmit}
-        // defaultValues={jobToEdit}
+        defaultValues={defaultValues}
       />
     </MainContainer>
   );

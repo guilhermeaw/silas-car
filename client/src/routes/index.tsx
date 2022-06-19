@@ -33,7 +33,7 @@ export const Routes = () => (
       />
 
       <Route
-        path="/edit-job"
+        path="/edit-job/:id"
         element={
           <RequireAuth>
             <EditCustomizationPage />
