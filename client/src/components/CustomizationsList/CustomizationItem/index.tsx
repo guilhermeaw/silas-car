@@ -7,11 +7,12 @@ import {
   Typography,
 } from '@mui/material';
 
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   DeleteOutline as DeleteOutlineIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
 import { Customization } from '../../../models/Customization';
 import { useDeleteCustomization } from '../../../services/mutations';
@@ -33,6 +34,18 @@ export const CustomizationItem = ({
     await deleteCustomization(item._id);
   };
 
+  const formattedDate = useMemo(() => {
+    return new Intl.DateTimeFormat('pt-BR', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+    }).format(new Date(item.date));
+  }, [item.date]);
+
   return (
     <Grid key={item._id} xs={6} item>
       <Card
@@ -53,7 +66,7 @@ export const CustomizationItem = ({
         <Stack marginLeft="1rem" width="100%" justifyContent="space-between">
           <div>
             <Typography variant="h3">{item.title}</Typography>
-            <Typography variant="subtitle1">{item.date}</Typography>
+            <Typography variant="subtitle1">{formattedDate}</Typography>
 
             <Tooltip title={item.description}>
               <Typography
