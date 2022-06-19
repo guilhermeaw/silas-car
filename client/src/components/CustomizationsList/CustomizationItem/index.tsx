@@ -14,6 +14,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import { Customization } from '../../../models/Customization';
+import { useDeleteCustomization } from '../../../services/mutations';
 
 type CustomizationItemProps = {
   item: Customization;
@@ -25,6 +26,12 @@ export const CustomizationItem = ({
   adminMode = false,
 }: CustomizationItemProps) => {
   const navigate = useNavigate();
+
+  const { mutateAsync: deleteCustomization } = useDeleteCustomization();
+
+  const handleDeleteCustomization = async () => {
+    await deleteCustomization(item._id);
+  };
 
   return (
     <Grid key={item._id} xs={6} item>
@@ -80,7 +87,10 @@ export const CustomizationItem = ({
               <EditIcon />
             </IconButton>
 
-            <IconButton aria-label="Deletar serviço" onClick={() => {}}>
+            <IconButton
+              aria-label="Deletar serviço"
+              onClick={handleDeleteCustomization}
+            >
               <DeleteOutlineIcon />
             </IconButton>
           </Stack>
