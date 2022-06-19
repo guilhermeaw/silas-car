@@ -11,11 +11,17 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={new QueryClient()}>
-        <AuthProvider>
-          <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+        >
+          <AuthProvider>
             <Routes />
-          </SnackbarProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </SnackbarProvider>
       </QueryClientProvider>
 
       <CssBaseline />
