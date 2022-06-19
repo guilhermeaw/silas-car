@@ -18,7 +18,6 @@ export const ManageCustomizationForm = ({
   defaultValues,
   onSubmit,
 }: ManageCustomizationFormProps) => {
-  console.log({ defaultValues });
   const { handleSubmit, control } = useForm<CustomizationFormData>({
     defaultValues,
   });
