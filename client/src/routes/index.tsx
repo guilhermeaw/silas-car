@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes as RouteList, Route } from 'react-router-dom';
 
-import AddJobPage from '../pages/AddJob';
-import EditJobPage from '../pages/EditJob';
+import AddCustomizationPage from '../pages/AddCustomization';
+import EditCustomizationPage from '../pages/EditCustomization';
 
 import DashboardPage from '../pages/Dashboard';
 import HomePage from '../pages/Home';
@@ -27,7 +27,7 @@ export const Routes = () => (
         path="/add-job"
         element={
           <RequireAuth>
-            <AddJobPage />
+            <AddCustomizationPage />
           </RequireAuth>
         }
       />
@@ -36,7 +36,7 @@ export const Routes = () => (
         path="/edit-job"
         element={
           <RequireAuth>
-            <EditJobPage />
+            <EditCustomizationPage />
           </RequireAuth>
         }
       />

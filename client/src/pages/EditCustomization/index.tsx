@@ -2,10 +2,13 @@ import { Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
 
 import { MainContainer } from '../../components/MainContainer';
-import { JobFormData, ManageJobForm } from '../../components/ManageJobForm';
+import {
+  CustomizationFormData,
+  ManageCustomizationForm,
+} from '../../components/ManageCustomizationForm';
 
-const EditJobPage = () => {
-  const handleSubmit: SubmitHandler<JobFormData> = data => {
+const EditCustomizationPage = () => {
+  const handleSubmit: SubmitHandler<CustomizationFormData> = data => {
     alert(JSON.stringify(data));
   };
 
@@ -13,7 +16,7 @@ const EditJobPage = () => {
     jobTitle: 'Customização de Civic SI',
     jobDescription:
       'Instalação de rodas esportivas aro 22, instalação de aerofólio de fibra de carbono, escapamento esportivo',
-    jobImageUrl:
+    customizationImageUrl:
       'https://i.pinimg.com/originals/a3/e2/19/a3e219ad261727b311b63969cc7a0e54.jpg',
   };
 
@@ -22,9 +25,12 @@ const EditJobPage = () => {
       <Typography variant="h2">Editar serviço</Typography>
       <Typography variant="subtitle1">Edite o serviço</Typography>
 
-      <ManageJobForm onSubmit={handleSubmit} defaultValues={jobToEdit} />
+      <ManageCustomizationForm
+        onSubmit={handleSubmit}
+        // defaultValues={jobToEdit}
+      />
     </MainContainer>
   );
 };
 
-export default EditJobPage;
+export default EditCustomizationPage;
