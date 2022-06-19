@@ -1,5 +1,6 @@
 import { Button, Container, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../store/Auth';
 
 import { RouterLink } from '../RouterLink';
 
@@ -7,8 +8,12 @@ import * as S from './styles';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const { signOut, user } = useAuth();
 
-  const user = null;
+  const handleSignOut = () => {
+    signOut();
+    navigate('/login');
+  };
 
   return (
     <S.Header>
@@ -30,13 +35,13 @@ export const Header = () => {
         </Stack>
 
         <Stack direction="row" spacing={2}>
-          {user ? (
-            <Button variant="contained" onClick={() => {}}>
+          <Button variant="outlined" onClick={() => navigate('/dashboard')}>
+            Dashboard
+          </Button>
+
+          {user && (
+            <Button variant="contained" onClick={handleSignOut}>
               Logout
-            </Button>
-          ) : (
-            <Button variant="outlined" onClick={() => navigate('/dashboard')}>
-              Dashboard
             </Button>
           )}
         </Stack>
