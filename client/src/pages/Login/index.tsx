@@ -1,10 +1,12 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FormEvent, RefObject, useRef } from 'react';
 import { Button, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 import { AuthContainer } from '../../components/AuthContainer';
 import { InputPassword } from '../../components/InputPassword';
 import { InputEmail } from '../../components/InputEmail';
+
+import { useAuth } from '../../store/Auth';
 
 import * as S from './styles';
 
@@ -13,11 +15,24 @@ const LoginPage = () => {
   const passwordInput = useRef(null) as RefObject<HTMLInputElement>;
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { signIn } = useAuth();
+
+  const from = location.state?.from?.pathname || '/';
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    navigate('/');
+    const email = emailInput?.current?.value;
+    const password = passwordInput?.current?.value;
+
+    if (!email || !password) {
+      return;
+    }
+
+    await signIn({ email, password });
+
+    navigate(from);
   };
 
   return (
