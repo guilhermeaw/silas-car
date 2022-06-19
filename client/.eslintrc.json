@@ -50,7 +50,8 @@
     "no-shadow": "off",
     "camelcase": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-underscore-dangle": "off"
   },
   "settings": {
     "import/resolver": {
