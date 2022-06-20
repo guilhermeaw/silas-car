@@ -19,7 +19,7 @@ const HomePage = () => {
         actionLabel="Conferir os serviços"
       />
 
-      {customizations?.length && <CustomizationsList items={customizations} />}
+      <CustomizationsList items={customizations} />
     </MainContainer>
   );
 };

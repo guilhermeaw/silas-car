@@ -5,7 +5,7 @@ import { Customization } from '../../models/Customization';
 import { CustomizationItem } from './CustomizationItem';
 
 type CustomizationsListProps = {
-  items: Customization[];
+  items: Customization[] | undefined;
   adminMode?: boolean;
 };
 
@@ -17,7 +17,7 @@ export const CustomizationsList = ({
 
   return (
     <Grid marginTop="0.5rem" spacing={2} container>
-      {items.map(item => (
+      {items?.map(item => (
         <CustomizationItem key={item._id} item={item} adminMode={adminMode} />
       ))}
 

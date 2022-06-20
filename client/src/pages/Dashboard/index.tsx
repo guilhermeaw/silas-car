@@ -12,9 +12,7 @@ const DashboardPage = () => {
 
   return (
     <MainContainer>
-      {customizations?.length && (
-        <CustomizationsList items={customizations} adminMode />
-      )}
+      <CustomizationsList items={customizations} adminMode />
     </MainContainer>
   );
 };
